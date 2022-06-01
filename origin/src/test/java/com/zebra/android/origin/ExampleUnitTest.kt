@@ -1,4 +1,4 @@
-package com.zebra.android.origin
+package com.android.origin
 
 import org.junit.Test
 
