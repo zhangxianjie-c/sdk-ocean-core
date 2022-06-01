@@ -28,7 +28,7 @@ class ZGlide {
      * 设置默认的占位图
      * @param defaultImage Drawable对象
      */
-    fun setDefaultImage(defaultImage: Drawable) {
+    fun setDefaultImage(defaultImage: Drawable?) {
         mDefaultImage = defaultImage
     }
 
