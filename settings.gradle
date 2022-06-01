@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "zebra-sdk-android-origin"
+rootProject.name = "sdk-android-origin"
 include ':origin'
