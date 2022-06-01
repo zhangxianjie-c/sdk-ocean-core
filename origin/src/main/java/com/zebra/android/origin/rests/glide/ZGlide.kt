@@ -1,4 +1,4 @@
-package com.zebra.android.origin.glide
+package com.zebra.android.origin.rests.glide
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
