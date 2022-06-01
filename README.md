@@ -1,5 +1,5 @@
 # zebra-sdk-android-origin
 [![](https://jitpack.io/v/priscilla-c/zebra-sdk-android-origin.svg)](https://jitpack.io/#priscilla-c/zebra-sdk-android-origin)
-| UI | DATA |
-| MEDIA | RESTS |
-| SECURITY | FRAMEWORK |
+| --- | --- | --- |
+| UI |  MEDIA | SECURITY |
+| DATA | RESTS | FRAMEWORK |
