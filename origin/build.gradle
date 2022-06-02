@@ -15,22 +15,47 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/cpp/jniLibs']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
     }
 }
 
 dependencies {
+    /**
+     * ZXing二维码处理库
+     * URL：https://github.com/zxing/zxing
+     */
+    implementation 'com.google.zxing:core:3.3.3'
+    /**
+     * 图片加载库
+     * URL：https://github.com/bumptech/glide
+     */
     implementation 'com.github.bumptech.glide:glide:4.13.1'
     implementation 'androidx.test:monitor:1.4.0'
     implementation 'androidx.test.ext:junit-ktx:1.1.3'
@@ -47,7 +72,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.priscilla-c'
                 artifactId = 'origin'
-                version = '1.0.0.beta.4'
+                version = '1.1.0-alpha.1'
             }
             // Creates a Maven publication called “debug”.
             debug(MavenPublication) {
@@ -56,7 +81,7 @@ afterEvaluate {
 
                 groupId = 'com.github.priscilla-c'
                 artifactId = 'origin-debug'
-                version = '1.0.0.beta.4'
+                version = '1.1.0-alpha.1'
             }
         }
     }
