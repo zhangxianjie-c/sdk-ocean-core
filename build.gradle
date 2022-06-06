@@ -17,3 +17,8 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    RELEASE_VERSION = '1.1.1-beta.5'
+    GROUP_ID = 'com.github.priscilla-c'
+}
