@@ -77,8 +77,8 @@ class Scan : TextureView.SurfaceTextureListener, DecoderHandler.DecoderCallback 
 
     override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {}
 
-    override fun handleResult(result: com.google.zxing.Result) {
-        scanResult?.invoke(result)
+    override fun handleResult(result: Result) {
+        scanResult?.invoke(result.toString())
     }
 
     fun startCamera() {
@@ -132,5 +132,5 @@ class Scan : TextureView.SurfaceTextureListener, DecoderHandler.DecoderCallback 
         matrix = null
     }
 
-    var scanResult: ((com.google.zxing.Result) -> Unit)? = null
+    var scanResult: ((String) -> Unit)? = null
 }
