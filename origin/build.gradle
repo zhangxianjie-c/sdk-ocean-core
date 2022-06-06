@@ -41,12 +41,12 @@ android {
         jvmTarget = '1.8'
     }
 
-  /*  externalNativeBuild {
+    externalNativeBuild {
         cmake {
             path "src/main/cpp/CMakeLists.txt"
             version "3.10.2"
         }
-    }*/
+    }
 }
 
 dependencies {
