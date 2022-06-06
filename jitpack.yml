@@ -1,5 +1,0 @@
-jdk:
-  -openjdk11
-install:
-  -./gradlew :sdk-android-origin:build :sdk-android-origin:publishToMavenLocal
-  -find . -name"*.arr"
