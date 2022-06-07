@@ -19,6 +19,6 @@ task clean(type: Delete) {
 }
 
 ext{
-    RELEASE_VERSION = '1.1.1-beta.5'
+    RELEASE_VERSION = '1.1.1'
     GROUP_ID = 'com.github.priscilla-c'
 }
