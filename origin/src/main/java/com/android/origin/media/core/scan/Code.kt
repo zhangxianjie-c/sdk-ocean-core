@@ -22,7 +22,7 @@ object Code {
         path: String?,
         errorResult: (() -> Unit)? = null,
         successResult: ((Bitmap, String) -> Unit),
-    ) {
+        ) {
         /**
          * 首先判断图片的大小,若图片过大,则执行图片的裁剪操作,防止OOM
          */
@@ -80,7 +80,6 @@ object Code {
      * @param text
      * @param width
      * @param height
-     * @param errorCorrectionLevel 容错率 L：7% M：15% Q：25% H：35%
      * @param margin                 空白边距（二维码与边框的空白区域）
      * @param colorBlack            黑色色块
      * @param colorWhite            白色色块
@@ -91,7 +90,6 @@ object Code {
         width: Int,
         height: Int,
         character:String = "utf-8",
-        errorCorrectionLevel: ErrorCorrectionLevel = ErrorCorrectionLevel.H,
         margin: Int = 0,
         colorBlack: Int = Color.parseColor("#000000"),
         colorWhite: Int = Color.parseColor("#FFFFFF"),
@@ -110,7 +108,7 @@ object Code {
             // 字符转码格式设置
             hints[EncodeHintType.CHARACTER_SET] = character
             // 容错率设置
-            hints[EncodeHintType.ERROR_CORRECTION] = errorCorrectionLevel
+            hints[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.H
             // 空白边距设置
             hints[EncodeHintType.MARGIN] = margin
             /** 2.将配置参数传入到QRCodeWriter的encode方法生成BitMatrix(位矩阵)对象  */
