@@ -25,20 +25,20 @@ Created by Zebra-RD张先杰 on 2022年6月2日13:49:11
 Description:
  */
 class Scan : TextureView.SurfaceTextureListener, DecoderHandler.DecoderCallback {
-    var context: Context? = null
+    private var context: Context? = null
 
-    var helper: CameraHelper? = null
+    private var helper: CameraHelper? = null
 
     //camera最佳筛选
-    var filter: SizeFilter? = null
+    private var filter: SizeFilter? = null
 
     //预览的缩放相关参数
-    var matrix: Matrix? = null
+    private var matrix: Matrix? = null
 
     //扫描解析处理
-    var handler: DecoderHandler? = null
+    private var handler: DecoderHandler? = null
 
-    var cameraView: CameraView? = null
+    private var cameraView: CameraView? = null
 
     fun init(ct: Context, cV: CameraView) {
         context = ct
