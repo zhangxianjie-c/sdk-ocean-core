@@ -24,7 +24,7 @@ public final class SoundVibratorHelper {
 
     private SoundPool soundPool;
 
-    private Boolean isBeep = true;
+    private Context mContext;
 
     private int soundId;
     /**
@@ -33,33 +33,26 @@ public final class SoundVibratorHelper {
     private Vibrator vibrator;
 
     public SoundVibratorHelper(Context context) {
-        context = context.getApplicationContext();
-        AudioManager audioService = (AudioManager) context.getSystemService(context.AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            isBeep = false;
-        }
-        vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-
+        mContext = context.getApplicationContext();
+        vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
         SoundPool.Builder builder = new SoundPool.Builder();
         builder.setMaxStreams(2);
         AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
         attrBuilder.setLegacyStreamType(AudioManager.STREAM_NOTIFICATION);
         builder.setAudioAttributes(attrBuilder.build());
         soundPool = builder.build();
-        soundId = soundPool.load(context, R.raw.beep, 1);
+        soundId = soundPool.load(mContext, R.raw.beep, 1);
     }
 
     public void play() {
-       if (isBeep){
-           soundPool.play(soundId, 1, 1, 0, 0, 1);
-       }else{
-           vibrator.vibrate(DEF_VIBRATE_DURATION);
-       }
+        AudioManager audioService = (AudioManager) mContext.getSystemService(mContext.AUDIO_SERVICE);
+        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
+            vibrator.vibrate(DEF_VIBRATE_DURATION);
+        else soundPool.play(soundId, 1, 1, 0, 0, 1);
     }
 
     public void stop() {
         soundPool.release();
         vibrator.cancel();
     }
-
 }
