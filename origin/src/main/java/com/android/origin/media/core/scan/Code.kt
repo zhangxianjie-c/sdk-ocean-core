@@ -1,8 +1,6 @@
 package com.android.origin.media.core.scan
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
+import android.graphics.*
 import android.text.TextUtils
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
@@ -22,8 +20,8 @@ object Code {
      */
     fun analyzeImage(
         path: String?,
-        successResult: ((Bitmap, String) -> Unit),
         errorResult: (() -> Unit)? = null,
+        successResult: ((Bitmap, String) -> Unit),
     ) {
         /**
          * 首先判断图片的大小,若图片过大,则执行图片的裁剪操作,防止OOM
@@ -80,72 +78,114 @@ object Code {
     /**
      * 生成二维码图片
      * @param text
-     * @param w
-     * @param h
-     * @param logo
-     * @return
+     * @param width
+     * @param height
+     * @param errorCorrectionLevel 容错率 L：7% M：15% Q：25% H：35%
+     * @param margin                 空白边距（二维码与边框的空白区域）
+     * @param colorBlack            黑色色块
+     * @param colorWhite            白色色块
+     * @return BitMap
      */
-    fun createImage(text: String, w: Int, h: Int, logo: Bitmap?): Bitmap? {
+    fun createImage(
+        text: String,
+        width: Int,
+        height: Int,
+        character:String = "utf-8",
+        errorCorrectionLevel: ErrorCorrectionLevel = ErrorCorrectionLevel.H,
+        margin: Int = 0,
+        colorBlack: Int = Color.parseColor("#000000"),
+        colorWhite: Int = Color.parseColor("#FFFFFF"),
+    ): Bitmap? {
         if (TextUtils.isEmpty(text)) {
             return null
         }
-        try {
-            val scaleLogo = getScaleLogo(logo, w, h)
-            var offsetX = w / 2
-            var offsetY = h / 2
-            var scaleWidth = 0
-            var scaleHeight = 0
-            if (scaleLogo != null) {
-                scaleWidth = scaleLogo.width
-                scaleHeight = scaleLogo.height
-                offsetX = (w - scaleWidth) / 2
-                offsetY = (h - scaleHeight) / 2
-            }
-            val hints = Hashtable<EncodeHintType, Any?>()
-            hints[EncodeHintType.CHARACTER_SET] = "utf-8"
-            //容错级别
-            hints[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.H
-            //设置空白边距的宽度
-            hints[EncodeHintType.MARGIN] = 0
-            val bitMatrix = QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, w, h, hints)
-            val pixels = IntArray(w * h)
-            for (y in 0 until h) {
-                for (x in 0 until w) {
-                    if (x >= offsetX && x < offsetX + scaleWidth && y >= offsetY && y < offsetY + scaleHeight) {
-                        var pixel = scaleLogo!!.getPixel(x - offsetX, y - offsetY)
-                        if (pixel == 0) {
-                            pixel = if (bitMatrix[x, y]) {
-                                -0x1000000
-                            } else {
-                                -0x1
-                            }
-                        }
-                        pixels[y * w + x] = pixel
+        // 宽和高>=0
+        if (width < 0 || height < 0) {
+            return null
+        }
+        return try {
+            /** 1.设置二维码相关配置  */
+            val hints =
+                Hashtable<EncodeHintType, Any?>()
+            // 字符转码格式设置
+            hints[EncodeHintType.CHARACTER_SET] = character
+            // 容错率设置
+            hints[EncodeHintType.ERROR_CORRECTION] = errorCorrectionLevel
+            // 空白边距设置
+            hints[EncodeHintType.MARGIN] = margin
+            /** 2.将配置参数传入到QRCodeWriter的encode方法生成BitMatrix(位矩阵)对象  */
+            val bitMatrix =
+                QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints)
+
+            /** 3.创建像素数组,并根据BitMatrix(位矩阵)对象为数组元素赋颜色值  */
+            val pixels = IntArray(width * height)
+            for (y in 0 until height) {
+                for (x in 0 until width) {
+                    //bitMatrix.get(x,y)方法返回true是黑色色块，false是白色色块
+                    if (bitMatrix[x, y]) {
+                        pixels[y * width + x] =
+                            colorBlack //黑色色块像素设置，可以通过传入不同的颜色实现彩色二维码，例如Color.argb(1,55,206,141)等设置不同的颜色。
                     } else {
-                        if (bitMatrix[x, y]) {
-                            pixels[y * w + x] = -0x1000000
-                        } else {
-                            pixels[y * w + x] = -0x1
-                        }
+                        pixels[y * width + x] = colorWhite // 白色色块像素设置
                     }
                 }
             }
-            val bitmap = Bitmap.createBitmap(w, h,
-                Bitmap.Config.ARGB_8888)
-            bitmap.setPixels(pixels, 0, w, 0, 0, w, h)
-            return bitmap
+            /** 4.创建Bitmap对象,根据像素数组设置Bitmap每个像素点的颜色值,并返回Bitmap对象  */
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+            bitmap
         } catch (e: WriterException) {
             e.printStackTrace()
+            null
         }
-        return null
     }
 
-    private fun getScaleLogo(logo: Bitmap?, w: Int, h: Int): Bitmap? {
-        if (logo == null) return null
-        val matrix = Matrix()
-        val scaleFactor =
-            Math.min(w * 1.0f / 5 / logo.width, h * 1.0f / 5 / logo.height)
-        matrix.postScale(scaleFactor, scaleFactor)
-        return Bitmap.createBitmap(logo, 0, 0, logo.width, logo.height, matrix, true)
+    /***
+     * 为二维码添加logo
+     *
+     * @param srcBitmap 二维码图片
+     * @param logoBitmap logo图片
+     * @param percent logo比例
+     * @return 生成的最终的图片
+     */
+    fun addLogo(srcBitmap: Bitmap?, logoBitmap: Bitmap?, percent: Float = 0.2F): Bitmap? {
+        //判断参数是否正确
+        if (srcBitmap == null)
+            return null
+        if (logoBitmap == null)
+            return srcBitmap
+        //输入logo图片比例错误自动纠正为默认的0.2f
+        var logoPercent = percent
+        if (percent < 0 || percent > 1)
+            logoPercent = 0.2f
+
+        //分别获取bitmap图片的大小
+        var sHeight = srcBitmap.height
+        var sWidth = srcBitmap.width
+        var lHeight = logoBitmap.height
+        var lWidth = logoBitmap.width
+
+        //获取缩放比例
+        var scareWidth = sHeight * logoPercent / lWidth
+        var scareHeight = sWidth * logoPercent / lHeight
+
+        //使用canvas重新绘制bitmap
+        var bitmap = Bitmap.createBitmap(sWidth, sHeight, Bitmap.Config.ARGB_8888)
+        var canvas = Canvas(bitmap)
+        canvas.drawBitmap(srcBitmap, 0f, 0f, null)
+        canvas.scale(
+            scareWidth,
+            scareHeight,
+            (sWidth / 2).toFloat(),
+            (sHeight / 2).toFloat()
+        )   //设置缩放中心基点
+        canvas.drawBitmap(
+            logoBitmap,
+            (sWidth / 2 - lWidth / 2).toFloat(),
+            (sHeight / 2 - lHeight / 2).toFloat(),
+            null
+        )
+        return bitmap
     }
+
 }
