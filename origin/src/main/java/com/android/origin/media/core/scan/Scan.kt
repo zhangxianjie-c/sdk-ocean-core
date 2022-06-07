@@ -24,7 +24,8 @@ Created by Zebra-RD张先杰 on 2022年6月2日13:49:11
 
 Description:
  */
-class Scan : TextureView.SurfaceTextureListener, DecoderHandler.DecoderCallback {
+class Scan(ct: Context,cv: CameraView,sq:Boolean = false) : TextureView.SurfaceTextureListener, DecoderHandler.DecoderCallback {
+
     private var context: Context? = null
 
     private var helper: CameraHelper? = null
@@ -40,11 +41,15 @@ class Scan : TextureView.SurfaceTextureListener, DecoderHandler.DecoderCallback 
 
     private var cameraView: CameraView? = null
 
-    fun init(ct: Context, cV: CameraView) {
+    //为false时持续扫码，2000毫秒一次
+    private  var successQuit :Boolean = false
+
+    init {
+        successQuit = sq
         context = ct
         helper = CameraHelper()
         filter = PictureSizeFilter()
-        cameraView = cV
+        cameraView = cv
         helper!!.setPreviewCallback { data, camera ->
             if (handler != null) {
                 handler!!.push(data)
