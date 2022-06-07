@@ -279,6 +279,8 @@ void NV21Rotate(const uint8_t* src_y,
     int dst_stride = (dst_stride_vu + 1) >> 1;
 
     switch (mode) {
+        case libyuv::kRotate0:
+            break;
         case libyuv::kRotate90:
             libyuv::RotatePlane90(src_y, src_stride_y, dst_y, dst_stride_y, width, height);
             RotateNV_UV90(src, src_stride, dst, dst_stride, uv16Width, uv16Height);//
