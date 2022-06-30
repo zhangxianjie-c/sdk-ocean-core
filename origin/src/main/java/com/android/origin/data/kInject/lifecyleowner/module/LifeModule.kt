@@ -1,9 +1,9 @@
-package com.jie.tungcheung.utils.kInject.lifecyleowner.module
+package com.android.origin.data.kInject.lifecyleowner.module
 
 import androidx.lifecycle.LifecycleOwner
 import com.android.origin.data.kInject.core.module.Module
 import com.android.origin.data.kInject.core.qualifier.Qualifier
-import com.jie.tungcheung.utils.kInject.lifecyleowner.observer.LifeModuleObserver
+import com.android.origin.data.kInject.lifecyleowner.observer.LifeModuleObserver
 
 fun LifecycleOwner.lifeModule(scope: LifeModule.()->Unit): LifeModule {
     val moduleBean = LifeModule(this)

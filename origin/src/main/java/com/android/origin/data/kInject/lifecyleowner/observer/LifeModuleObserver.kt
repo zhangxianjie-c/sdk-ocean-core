@@ -1,4 +1,4 @@
-package com.jie.tungcheung.utils.kInject.lifecyleowner.observer
+package com.android.origin.data.kInject.lifecyleowner.observer
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

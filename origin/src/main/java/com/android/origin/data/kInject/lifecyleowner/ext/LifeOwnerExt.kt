@@ -1,4 +1,4 @@
-package com.jie.tungcheung.utils.kInject.lifecyleowner.ext
+package com.android.origin.data.kInject.lifecyleowner.ext
 
 import androidx.lifecycle.LifecycleOwner
 import com.android.origin.data.kInject.core.Logger
