@@ -17,6 +17,9 @@
 ### 扫码
     功能入口：com.android.origin.media.core.Scan
 ## DATA
+### 对象存储(预初始化)
+    一个轻量级的注入框架
+    功能入口：com.android.origin.data.kInject.core.Kinit
 ## RESTS
 ## ~~FRAMEWORK~~
 ## ~~SECURITY~~
