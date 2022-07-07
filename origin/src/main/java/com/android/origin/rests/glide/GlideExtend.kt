@@ -19,12 +19,30 @@ class GlideExtend private constructor(){
     companion object {
         private val instant by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { GlideExtend() }
         fun create() = instant
+        private var mDefaultImage: Drawable? = null
         fun ImageView.load(url: String, defaultImage: Drawable? = null) {
             Glide.with(this).load(when {
                 url.contains("http") -> url
                 defaultImage != null -> defaultImage
+                mDefaultImage != null -> mDefaultImage
                 else -> throw RuntimeException("图片路径不合法，并未设置占位图")
             }).into(this)
         }
+    }
+
+    /**
+     * 设置默认的占位图
+     * @param defaultImage Drawable对象
+     */
+    fun setDefaultImage(defaultImage: Drawable?) {
+        mDefaultImage = defaultImage
+    }
+
+    /**
+     * 获取当前占位图
+     * @return 当前占位图Drawable对象
+     */
+    fun getDefaultImage(): Drawable? {
+        return mDefaultImage
     }
 }
