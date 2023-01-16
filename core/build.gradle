@@ -74,7 +74,7 @@ afterEvaluate {
 
                 // You can then customize attributes of the publication as shown below.
                 groupId = GROUP_ID
-                artifactId = ''
+                artifactId = 'sdk-ocean-core'
                 version = RELEASE_VERSION
             }
             // Creates a Maven publication called “debug”.
