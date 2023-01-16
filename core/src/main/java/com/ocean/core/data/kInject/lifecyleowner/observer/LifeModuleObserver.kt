@@ -1,17 +1,16 @@
 package com.ocean.core.data.kInject.lifecyleowner.observer
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import android.widget.Toast
+import androidx.lifecycle.*
 import com.ocean.core.data.kInject.core.qualifier.Qualifier
 import com.ocean.core.data.kInject.core.register.ModuleRegister
+import com.ocean.core.framework.SystemOS
 
 
-class LifeModuleObserver(var qualifier: Qualifier<*>) : LifecycleObserver {
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy(){
-        ModuleRegister.instant.removeEntry(qualifier)
+class LifeModuleObserver(var qualifier: Qualifier<*>) : LifecycleEventObserver {
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        if(event == Lifecycle.Event.ON_DESTROY ) {
+            ModuleRegister.instant.removeEntry(qualifier)
+        }
     }
-
 }
