@@ -3,11 +3,11 @@ package com.ocean.core.framework.network.collection
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.android.core.data.kInject.core.ext.single
-import com.android.core.framework.network.SingleLiveEvent
-import com.android.core.framework.network.dispose.pack.Result
-import com.android.core.framework.network.dispose.request
-import com.android.core.framework.network.dispose.transition
+import com.ocean.core.data.kInject.core.ext.single
+import com.ocean.core.framework.network.SingleLiveEvent
+import com.ocean.core.framework.network.dispose.pack.Result
+import com.ocean.core.framework.network.dispose.request
+import com.ocean.core.framework.network.dispose.transition
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody

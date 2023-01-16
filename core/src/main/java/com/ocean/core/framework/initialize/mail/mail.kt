@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.core.net.toUri
-import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -79,8 +78,8 @@ class MailUtils private constructor() {
            mimeBodyPart.setContent(content,"text/html; charset=UTF-8")
             val multipart = MimeMultipart()
             multipart.addBodyPart(mimeBodyPart)
-            for (i in files) {
-               val baseFile =  File(context.getExternalFilesDir("Mail"), File.separator + "${System.currentTimeMillis()}.${MimeTypeMap.getFileExtensionFromUrl(i)}")
+            for (i in 0 until  files.size) {
+               val baseFile =  File(context.getExternalFilesDir("Mail"), File.separator + "${System.currentTimeMillis()}.${MimeTypeMap.getFileExtensionFromUrl(files[i])}")
                 try {
                     if (baseFile.exists()) {
                         baseFile.delete()
@@ -90,7 +89,7 @@ class MailUtils private constructor() {
                     e.printStackTrace()
                 }
                val fos =  FileOutputStream(baseFile)
-                val fis = context.contentResolver.openInputStream(i.toUri())
+                val fis = context.contentResolver.openInputStream(files[i].toUri())
                 try {
                     var len: Int
                     val bt = ByteArray(1024)
@@ -105,7 +104,7 @@ class MailUtils private constructor() {
                 }
                val mimeBodyPart = MimeBodyPart()
                 mimeBodyPart.attachFile(baseFile)
-                mimeBodyPart.fileName = MimeUtility.encodeText(DocumentFile.fromSingleUri(context, i.toUri())!!.name)
+                mimeBodyPart.fileName = MimeUtility.encodeText("附件${i}")
                 multipart.addBodyPart(mimeBodyPart)
             }
             mailMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(copyAddress))

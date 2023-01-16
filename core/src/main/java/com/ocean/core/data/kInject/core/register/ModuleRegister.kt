@@ -1,9 +1,9 @@
 package com.ocean.core.data.kInject.core.register
 
-import com.android.core.data.kInject.core.Logger
-import com.android.core.data.kInject.core.module.Module
-import com.android.core.data.kInject.core.qualifier.Qualifier
-import com.android.core.data.kInject.core.qualifier.StringQualifier
+import com.ocean.core.data.kInject.core.Logger
+import com.ocean.core.data.kInject.core.module.Module
+import com.ocean.core.data.kInject.core.qualifier.Qualifier
+import com.ocean.core.data.kInject.core.qualifier.StringQualifier
 import java.util.concurrent.ConcurrentHashMap
 
 

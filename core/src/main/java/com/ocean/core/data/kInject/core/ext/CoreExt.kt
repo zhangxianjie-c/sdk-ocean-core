@@ -1,11 +1,11 @@
 package com.ocean.core.data.kInject.core.ext
 
 import android.app.Application
-import com.android.core.data.kInject.core.Components
-import com.android.core.data.kInject.core.Logger
-import com.android.core.data.kInject.core.qualifier.StringQualifier
-import com.android.core.data.kInject.core.register.GlobalRegister
-import com.android.core.data.kInject.core.register.ModuleRegister
+import com.ocean.core.data.kInject.core.Components
+import com.ocean.core.data.kInject.core.Logger
+import com.ocean.core.data.kInject.core.qualifier.StringQualifier
+import com.ocean.core.data.kInject.core.register.GlobalRegister
+import com.ocean.core.data.kInject.core.register.ModuleRegister
 
 
 fun androidContext(): Application? = getSingle(Components.ANDROID_APPLICATION_KEY)

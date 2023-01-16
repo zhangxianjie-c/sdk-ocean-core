@@ -34,11 +34,34 @@ android {
 }
 
 dependencies {
+    //----------------------------Retrofit----------------------------//
+    //okhttp底层io库
+    api("com.squareup.okio:okio:3.2.0")
+    //okhttp
+    api("com.squareup.okhttp3:okhttp:4.3.1")
+    api("com.squareup.retrofit2:retrofit:2.9.0")
+//    api("com.google.code.gson:gson:2.8.9")
+    //json处理工具
+    api ("com.alibaba:fastjson:1.2.47")
+    api("com.squareup.retrofit2:converter-gson:2.9.0")        //--Gson转换器
+//    implementation("com.squareup.retrofit2:converter-jackson:2.0.2")     //--Jackson转换器
+//    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")       //--Moshi转换器
+//    implementation("com.squareup.retrofit2:converter-protobuf:2.0.2")    //--Protobuf转换器
+//    implementation("com.squareup.retrofit2:converter-wire:2.0.2")        //--Wire转换器
+//    implementation("com.squareup.retrofit2:converter-simplexml:2.0.2")   //--Simple转换器
+//    implementation("com.squareup.retrofit2:converter-jaxb:2.9.0")        //--JAXB转换器
+    api("com.squareup.retrofit2:converter-scalars:2.4.0")     //--Scalars转换器(primitives, boxed, and String)
+    //----------------------------Retrofit----------------------------//
     /**
-     * 图片加载库
-     * URL：https://github.com/bumptech/glide
+     * 邮件发送
      */
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    implementation("com.sun.mail:android-mail:1.6.7")
+    implementation("com.sun.mail:android-activation:1.6.7")
+    //kotlin新功能库
+    api("androidx.activity:activity-ktx:1.5.1")
+    api("androidx.fragment:fragment-ktx:1.4.1")
+    //生命周期感知
+    api("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation 'androidx.test:monitor:1.5.0'
     implementation 'androidx.test.ext:junit-ktx:1.1.3'
 }

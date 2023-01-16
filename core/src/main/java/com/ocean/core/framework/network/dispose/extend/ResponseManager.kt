@@ -1,8 +1,8 @@
 package com.ocean.core.framework.network.dispose.extend
 
 import androidx.lifecycle.MutableLiveData
-import com.android.core.framework.network.dispose.pack.Result
-import com.android.core.framework.network.exception.NetWorkException
+import com.ocean.core.framework.network.dispose.pack.Result
+import com.ocean.core.framework.network.exception.NetWorkException
 
 /**
 Created by Zebra-RD张先杰 on 2022年7月12日14:32:31

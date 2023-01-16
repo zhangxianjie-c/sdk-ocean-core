@@ -1,6 +1,6 @@
 package com.ocean.core.data.kInject.core.module
 
-import com.android.core.data.kInject.core.qualifier.Qualifier
+import com.ocean.core.data.kInject.core.qualifier.Qualifier
 import java.util.concurrent.ConcurrentHashMap
 
 

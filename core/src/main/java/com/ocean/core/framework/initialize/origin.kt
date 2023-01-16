@@ -1,10 +1,10 @@
 package com.ocean.core.framework.initialize
 
 import android.content.Context
-import com.android.core.framework.SystemOS
-import com.android.core.framework.initialize.crash.CrashHandler
-import com.android.core.framework.initialize.mail.MailUtils
-import com.android.core.framework.network.control.Network
+import com.ocean.core.framework.SystemOS
+import com.ocean.core.framework.initialize.crash.CrashHandler
+import com.ocean.core.framework.initialize.mail.MailUtils
+import com.ocean.core.framework.network.control.Network
 
 
 /**

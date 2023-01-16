@@ -1,6 +1,6 @@
 package com.ocean.core.framework.network.dispose.extend
 
-import com.android.core.framework.network.dispose.pack.Response
+import com.ocean.core.framework.network.dispose.pack.Response
 
 /**
 Created by Zebra-RD张先杰 on 2022年7月12日14:32:09

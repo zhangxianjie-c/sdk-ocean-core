@@ -1,8 +1,8 @@
 package com.ocean.core.framework.network.control
 
 import android.content.Context
-import com.android.core.data.kInject.core.initScope
-import com.android.core.framework.network.collection.ApiService
+import com.ocean.core.data.kInject.core.initScope
+import com.ocean.core.framework.network.collection.ApiService
 import okhttp3.Cache
 import okhttp3.CookieJar
 import okhttp3.Interceptor

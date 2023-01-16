@@ -1,7 +1,7 @@
 package com.ocean.core.data.kInject.core.register
 
-import com.android.core.data.kInject.core.qualifier.Qualifier
-import com.android.core.data.kInject.core.qualifier.StringQualifier
+import com.ocean.core.data.kInject.core.qualifier.Qualifier
+import com.ocean.core.data.kInject.core.qualifier.StringQualifier
 import java.util.concurrent.ConcurrentHashMap
 
 

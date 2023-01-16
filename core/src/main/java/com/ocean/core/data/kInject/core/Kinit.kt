@@ -1,10 +1,10 @@
 package com.ocean.core.data.kInject.core
 
 import android.app.Application
-import com.android.core.data.kInject.core.module.Module
-import com.android.core.data.kInject.core.qualifier.StringQualifier
-import com.android.core.data.kInject.core.register.GlobalRegister
-import com.android.core.data.kInject.core.register.ModuleRegister
+import com.ocean.core.data.kInject.core.module.Module
+import com.ocean.core.data.kInject.core.qualifier.StringQualifier
+import com.ocean.core.data.kInject.core.register.GlobalRegister
+import com.ocean.core.data.kInject.core.register.ModuleRegister
 
 
 fun initScope(component: Components.()->Unit){

@@ -1,13 +1,13 @@
 package com.ocean.core.framework.network.dispose
 
 import androidx.lifecycle.*
-import com.android.core.framework.network.dispose.extend.RequestManager
-import com.android.core.framework.network.dispose.extend.ResponseManager
-import com.android.core.framework.network.dispose.pack.Response
-import com.android.core.framework.network.dispose.pack.Result
-import com.android.core.framework.network.exception.Error
-import com.android.core.framework.network.exception.NetWorkException
-import com.android.core.framework.network.getJSONFields
+import com.ocean.core.framework.network.dispose.extend.RequestManager
+import com.ocean.core.framework.network.dispose.extend.ResponseManager
+import com.ocean.core.framework.network.dispose.pack.Response
+import com.ocean.core.framework.network.dispose.pack.Result
+import com.ocean.core.framework.network.exception.Error
+import com.ocean.core.framework.network.exception.NetWorkException
+import com.ocean.core.framework.network.getJSONFields
 import kotlinx.coroutines.*
 
 /**
