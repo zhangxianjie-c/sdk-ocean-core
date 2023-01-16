@@ -74,7 +74,7 @@ afterEvaluate {
 
                 // You can then customize attributes of the publication as shown below.
                 groupId = GROUP_ID
-                artifactId = 'core'
+                artifactId = ''
                 version = RELEASE_VERSION
             }
             // Creates a Maven publication called “debug”.
@@ -83,7 +83,7 @@ afterEvaluate {
                 from components.debug
 
                 groupId = GROUP_ID
-                artifactId = 'core-debug'
+                artifactId = ''
                 version = RELEASE_VERSION
             }
         }

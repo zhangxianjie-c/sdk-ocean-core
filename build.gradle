@@ -19,6 +19,6 @@ task clean(type: Delete) {
 }
 
 ext{
-    RELEASE_VERSION = '2.0.4'
-    GROUP_ID = 'com.github.ocean'
+    RELEASE_VERSION = '2.0.5'
+    GROUP_ID = ''
 }
