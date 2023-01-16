@@ -83,7 +83,7 @@ afterEvaluate {
                 from components.debug
 
                 groupId = GROUP_ID
-                artifactId = ''
+                artifactId = 'debug'
                 version = RELEASE_VERSION
             }
         }
