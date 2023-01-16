@@ -1,5 +1,5 @@
 # zebra-sdk-android-origin
-[![](https://jitpack.io/v/xianjie-c/sdk-ocean-core.svg)](https://jitpack.io/#priscilla-c/sdk-ocean-core)
+[![](https://jitpack.io/v/zhangxianjie-c/sdk-ocean-core.svg)](https://jitpack.io/#zhangxianjie-c/sdk-ocean-core)
 
 | 标题 |  释义 |
 | --- | --- |
