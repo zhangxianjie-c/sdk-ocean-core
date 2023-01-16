@@ -13,5 +13,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "sdk-ocean-core"
+rootProject.name = "sdk-ocean"
 include ':core'
