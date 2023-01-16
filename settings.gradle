@@ -13,5 +13,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "sdk-android-origin"
-include ':origin'
+rootProject.name = "sdk-ocean-core"
+include ':core'

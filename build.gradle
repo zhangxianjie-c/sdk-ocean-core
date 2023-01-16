@@ -19,6 +19,6 @@ task clean(type: Delete) {
 }
 
 ext{
-    RELEASE_VERSION = '1.1.8'
-    GROUP_ID = 'com.github.priscilla-c'
+    RELEASE_VERSION = '2.0.0'
+    GROUP_ID = 'com.github.ocean'
 }
