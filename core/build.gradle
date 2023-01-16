@@ -9,7 +9,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        minSdk 26
+        minSdk 23
         targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -78,14 +78,6 @@ afterEvaluate {
                 version = RELEASE_VERSION
             }
             // Creates a Maven publication called “debug”.
-            debug(MavenPublication) {
-                // Applies the component for the debug build variant.
-                from components.debug
-
-                groupId = GROUP_ID
-                artifactId = 'debug'
-                version = RELEASE_VERSION
-            }
         }
     }
 }

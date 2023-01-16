@@ -19,6 +19,6 @@ task clean(type: Delete) {
 }
 
 ext{
-    RELEASE_VERSION = '2.0.7'
-    GROUP_ID = 'sdk-ocean'
+    RELEASE_VERSION = '2.0.8'
+    GROUP_ID = 'com.github.zhangxianjie-c'
 }
