@@ -19,6 +19,6 @@ task clean(type: Delete) {
 }
 
 ext{
-    RELEASE_VERSION = '2.0.9'
+    RELEASE_VERSION = '2.0.10'
     GROUP_ID = 'com.github.zhangxianjie-c'
 }
