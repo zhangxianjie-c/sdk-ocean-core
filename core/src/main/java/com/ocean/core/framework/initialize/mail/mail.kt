@@ -63,7 +63,7 @@ class MailUtils private constructor() {
      * 发送文本类型的邮件
      * @param
      */
-    fun sendMail(context:Context,toAddress: String,copyAddress:String, subject: String, content: String,files:ArrayList<String> = arrayListOf(), error:(()->Unit),success:(()->Unit)) {
+    fun sendMail(context:Context,toAddress: String,copyAddress:String, subject: String, content: String,files:ArrayList<String> = arrayListOf(), error:((Exception)->Unit),success:(()->Unit)) {
         GlobalScope.launch(Dispatchers.IO) {
 
             val to: Address = InternetAddress(toAddress)
@@ -124,10 +124,9 @@ class MailUtils private constructor() {
                     success.invoke()
                 }
             }catch (e:java.lang.Exception){
-                Log.e("TAG", "sendMail: ${e.toString()}")
                 e.printStackTrace()
                 withContext(Dispatchers.Main){
-                    error.invoke()
+                    error.invoke(e)
                 }
             }
 
