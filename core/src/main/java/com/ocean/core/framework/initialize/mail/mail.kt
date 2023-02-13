@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.core.net.toUri
+import com.ocean.core.data.FileManage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -79,7 +80,7 @@ class MailUtils private constructor() {
             val multipart = MimeMultipart()
             multipart.addBodyPart(mimeBodyPart)
             for (i in 0 until  files.size) {
-               val baseFile =  File(context.getExternalFilesDir("Mail"), File.separator + "${System.currentTimeMillis()}.${MimeTypeMap.getFileExtensionFromUrl(files[i])}")
+               val baseFile =  File(context.getExternalFilesDir("Mail"), File.separator + "${System.currentTimeMillis()}.${FileManage.getFileExtensionFromUrl(files[i])}")
                 try {
                     if (baseFile.exists()) {
                         baseFile.delete()

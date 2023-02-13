@@ -19,3 +19,45 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.ocean.core.framework.initialize.mail.**{ *; }
+-keep class javax.mail.**{*;}
+-keep class javax.mail.internet.**{*;}
+-keep class org.apache.commons.mail.**{*;}
+
+-keep class javamail.** {*;}
+-keep class javax.mail.** {*;}
+-keep class javax.activation.** {*;}
+-keep class com.sun.mail.dsn.** {*;}
+-keep class com.sun.mail.handlers.** {*;}
+-keep class com.sun.mail.smtp.** {*;}
+-keep class com.sun.mail.util.** {*;}
+-keep class mailcap.** {*;}
+-keep class mimetypes.** {*;}
+-keep class myjava.awt.datatransfer.** {*;}
+-keep class org.apache.harmony.awt.** {*;}
+-keep class org.apache.harmony.misc.** {*;}
+
+-keep class kotlinx.coroutines.android.** {*;}
+-keep class kotlin.** { *; }
+-keep class kotlin.Metadata { *; }
+-dontwarn kotlin.**
+-keepclassmembers class **$WhenMappings {
+    <fields>;
+}
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
+}
+-assumenosideeffects class kotlin.jvm.internal.Intrinsics {
+    static void checkParameterIsNotNull(java.lang.Object, java.lang.String);
+}
+-keep class kotlinx.coroutines.android.** {*;}
+# ServiceLoader support
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+-keepnames class kotlinx.coroutines.android.AndroidExceptionPreHandler {}
+-keepnames class kotlinx.coroutines.android.AndroidDispatcherFactory {}
+
+# Most of volatile fields are updated with AFU and should not be mangled
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
+}
