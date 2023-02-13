@@ -2,7 +2,6 @@ package com.ocean.core.framework.initialize
 
 import android.content.Context
 import com.ocean.core.framework.SystemOS
-import com.ocean.core.framework.initialize.crash.CrashHandler
 import com.ocean.core.framework.initialize.mail.MailUtils
 import com.ocean.core.framework.network.control.Network
 
@@ -35,12 +34,6 @@ class Origin private constructor() {
         val mail = MailUtils.create()
         mail.context = context
         init(mail)
-    }
-
-    fun crash(init: CrashHandler.() -> Unit) {
-        val crash = CrashHandler.create()
-        crash.context = context
-        init(crash)
     }
 
     fun initializeSystemOS(init: SystemOS.() -> Unit) {
