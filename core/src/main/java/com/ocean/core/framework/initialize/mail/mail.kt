@@ -66,7 +66,6 @@ class MailUtils private constructor() {
      */
     fun sendMail(context:Context,toAddress: String,copyAddress:String, subject: String, content: String,files:ArrayList<String> = arrayListOf(), error:((Exception)->Unit),success:(()->Unit)) {
         GlobalScope.launch(Dispatchers.IO) {
-
             val to: Address = InternetAddress(toAddress)
             // 设置邮件接收者的地址
             mailMessage.setRecipient(Message.RecipientType.TO, to)
@@ -80,7 +79,8 @@ class MailUtils private constructor() {
             val multipart = MimeMultipart()
             multipart.addBodyPart(mimeBodyPart)
             for (i in 0 until  files.size) {
-               val baseFile =  File(context.getExternalFilesDir("Mail"), File.separator + "${System.currentTimeMillis()}.${FileManage.getFileExtensionFromUrl(files[i])}")
+                val  fileName = "${System.currentTimeMillis()}.${FileManage.getFileExtensionFromUrl(files[i])}"
+               val baseFile =  File(context.getExternalFilesDir("Mail"), File.separator + fileName)
                 try {
                     if (baseFile.exists()) {
                         baseFile.delete()
@@ -105,7 +105,7 @@ class MailUtils private constructor() {
                 }
                val mimeBodyPart = MimeBodyPart()
                 mimeBodyPart.attachFile(baseFile)
-                mimeBodyPart.fileName = MimeUtility.encodeText("附件${i}")
+                mimeBodyPart.fileName = MimeUtility.encodeText(fileName)
                 multipart.addBodyPart(mimeBodyPart)
             }
             mailMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(copyAddress))
