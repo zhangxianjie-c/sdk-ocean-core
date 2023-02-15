@@ -25,7 +25,7 @@ fun Fragment.toast(text:String){
 
 @Keep
 fun Context.toast(text:String){
-    val currentToast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
+    val currentToast = Toast.makeText(this, text, Toast.LENGTH_SHORT)
     setting(text,currentToast)
     currentToast.show()
 }
@@ -39,7 +39,7 @@ var lastToast:Toast? = null
 @Keep
 fun Context.singleToast(text:String){
     if (lastToast == null || (lastToast!=null && lastToast!!.view!!.findViewById<TextView>(R.id.toast_text).text != text)){
-        lastToast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
+        lastToast = Toast.makeText(this, text, Toast.LENGTH_SHORT)
         setting(text,lastToast!!)
         lastToast!!.show()
     } else if (lastToast != null){
@@ -49,16 +49,15 @@ fun Context.singleToast(text:String){
 }
 
 fun Context.setting(text:String,toast:Toast){
-    val toastLayout: View =
-        (getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.toast_layout, null)
-    val toastTextView = toastLayout.findViewById<TextView>(R.id.toast_text)
-    val drawableFrame = resources.getDrawable(R.drawable.toast_frame,null) as NinePatchDrawable
-    drawableFrame.setColorFilter(Color.parseColor("#CC000000"), PorterDuff.Mode.SRC_IN)
-    toastLayout.background = drawableFrame
-    toastTextView.text = text
-    toastTextView.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL))
-//    toastTextView.textSize = resources.getDimension(R.dimen.sp_10)
-    toastTextView.setTextColor(Color.WHITE)
-    toast.view = toastLayout
-    toast.setGravity(toast.gravity , toast.xOffset, toast.yOffset)
+//    val toastLayout: View =
+//        (getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.toast_layout, null)
+//    val toastTextView = toastLayout.findViewById<TextView>(R.id.toast_text)
+//    val drawableFrame = resources.getDrawable(R.drawable.toast_frame,null) as NinePatchDrawable
+//    drawableFrame.setColorFilter(Color.parseColor("#CC000000"), PorterDuff.Mode.SRC_IN)
+//    toastLayout.background = drawableFrame
+//    toastTextView.text = text
+//    toastTextView.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL))
+//    toastTextView.setTextColor(Color.WHITE)
+//    toast.view = toastLayout
+//    toast.setGravity(toast.gravity , toast.xOffset, toast.yOffset)
 }
