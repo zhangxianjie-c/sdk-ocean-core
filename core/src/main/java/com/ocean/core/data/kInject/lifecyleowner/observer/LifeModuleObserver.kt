@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.lifecycle.*
 import com.ocean.core.data.kInject.core.qualifier.Qualifier
 import com.ocean.core.data.kInject.core.register.ModuleRegister
-import com.ocean.core.framework.SystemOS
 
 
 class LifeModuleObserver(var qualifier: Qualifier<*>) : LifecycleEventObserver {

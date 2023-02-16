@@ -15,7 +15,7 @@ Created by Zebra-RD张先杰 on 2022年7月6日15:02:30
 
 Description:存放系统级或系统相关的信息
  */
-object SystemOS{
+object SystemInfo{
     var density: Float = 0f
     var widthPixels: Int = 0
     var heightPixels: Int = 0
@@ -69,7 +69,7 @@ object SystemOS{
         battery = getSystemBattery(context).toString()
         appPacketName = context.applicationInfo.packageName
         appVersion = context.packageManager.getPackageInfo(context.packageName, 0).versionName
-        Log.i("SystemOS", "initialize success :\n displayMetrics: ${displayMetrics} \n density: ${density} \n widthPixels: ${widthPixels} \n heightPixels: ${heightPixels} \n deviceName: ${deviceName} \n brand ${brand} \n model: ${model} \n system ${system} \n sysVersion: ${sysVersion} \n battery: ${battery} \n appPacketName: ${appPacketName} \n appVersion: ${appVersion} \n appBuildCode: ${appBuildCode} \n env: ${env  }" )
+        Log.i("SystemInfo", "initialize success :\n displayMetrics: ${displayMetrics} \n density: ${density} \n widthPixels: ${widthPixels} \n heightPixels: ${heightPixels} \n deviceName: ${deviceName} \n brand ${brand} \n model: ${model} \n system ${system} \n sysVersion: ${sysVersion} \n battery: ${battery} \n appPacketName: ${appPacketName} \n appVersion: ${appVersion} \n appBuildCode: ${appBuildCode} \n env: ${env  }" )
     }
 
     private fun Context.isDebug(): Boolean {

@@ -1,7 +1,7 @@
 package com.ocean.core.framework.initialize
 
 import android.content.Context
-import com.ocean.core.framework.SystemOS
+import com.ocean.core.framework.SystemInfo
 import com.ocean.core.framework.initialize.mail.MailUtils
 import com.ocean.core.framework.network.control.Network
 
@@ -36,9 +36,9 @@ class Origin private constructor() {
         init(mail)
     }
 
-    fun initializeSystemOS(init: SystemOS.() -> Unit) {
-        var systemOS = SystemOS
-        systemOS.initialize(context)
-        init.invoke(systemOS)
+    fun initializeSystemInfo(init: SystemInfo.() -> Unit) {
+        var SystemInfo = SystemInfo
+        SystemInfo.initialize(context)
+        init.invoke(SystemInfo)
     }
 }
